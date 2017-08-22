@@ -17,11 +17,16 @@ import { AppRoutingModule } from './app.routing';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
+import { WidgetStatusVotacaoComponent } from './widget-status-votacao/widget-status-votacao.component';
+import { ConselheirosBoardComponent } from './conselheiros-board/conselheiros-board.component';
+import { VotacaoService } from './votacao.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule
@@ -32,9 +37,11 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective
+    AsideToggleDirective,
+    WidgetStatusVotacaoComponent,
+    ConselheirosBoardComponent
   ],
-  providers: [{
+  providers: [VotacaoService, {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   }],

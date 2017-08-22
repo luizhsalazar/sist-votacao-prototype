@@ -1,0 +1,8 @@
+<div class="row">
+  <div *ngFor="let conselheiroGroup of conselheiros" class="col-md-2">
+    <ul *ngFor="let conselheiro of conselheiroGroup" class="list-group">
+      <li class="list-group-item" [class.active]="conselheiro.presente_sessao">{{ conselheiro.nome }}</li>
+    </ul>
+  <div>
+<div>
+

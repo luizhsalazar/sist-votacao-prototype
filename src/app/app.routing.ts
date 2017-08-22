@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
+import { WidgetStatusVotacaoComponent } from './widget-status-votacao/widget-status-votacao.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,9 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
+      },
+      {
+        path: 'votacao', component: WidgetStatusVotacaoComponent
       },
     ]
   }
