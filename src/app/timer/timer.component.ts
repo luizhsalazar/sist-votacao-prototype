@@ -32,6 +32,6 @@ export class TimerComponent implements OnInit {
   
   timercallback() {
     this.counter++;
-    this.service.emitConselheirosChangeEvent(true);
+    this.service.emitConselheirosChangeEvent();
   }  
 }

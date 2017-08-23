@@ -24,8 +24,8 @@ export class VotacaoService {
     return this.http.get('http://localhost:9090/ca/sistvotacao/painel/api.php?method=item_votacao');
   }
 
-  emitConselheirosChangeEvent(number) {
-    this.conselheirosChange.emit(number);
+  emitConselheirosChangeEvent() {
+    this.conselheirosChange.emit();
   }
 
   getConselheirosChangeEmitter() {
