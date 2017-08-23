@@ -25,7 +25,7 @@ export class ConselheirosBoardComponent implements OnInit {
       .subscribe(response => {
         this.conselheiros = this.groupedArray(response, 15);
       }, error => {
-        console.log('error getting conselheiros: ' + error);
+        // console.log('error getting conselheiros: ' + error);
     });
   }
 

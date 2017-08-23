@@ -8,7 +8,7 @@ import { VotacaoService } from "app/votacao.service";
 })
 export class WidgetStatusVotacaoComponent implements OnInit {
 
-  statusVotacao: any;
+  statusVotacao: any = [];
   subscription: any;
   
   constructor(private service: VotacaoService) { 
@@ -25,7 +25,7 @@ export class WidgetStatusVotacaoComponent implements OnInit {
     .subscribe(response => {
       this.statusVotacao = response;        
     }, error => {
-      console.log('error getting conselheiros: ' + error);
+      // console.log('error getting status votacao: ' + error);
     });
   }
 }

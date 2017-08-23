@@ -11,8 +11,8 @@
       </div>
       <div class="h4 mb-0">{{ statusVotacao.total_presentes }}</div>
       <small class="text-muted text-uppercase font-weight-bold">Presentes</small>
-      <div class="progress progress-xs mt-1 mb-0">
-        <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress">
+        <div class="progress-bar bg-info" role="progressbar" [style.width]="(statusVotacao.total_presentes / statusVotacao.total_conselheiros) * 100 + '%'"></div>
       </div>
     </div>
   </div>
@@ -23,8 +23,8 @@
       </div>
       <div class="h4 mb-0">{{ statusVotacao.a_favor }}</div>
       <small class="text-muted text-uppercase font-weight-bold">A Favor</small>
-      <div class="progress progress-xs mt-1 mb-0">
-        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress">
+        <div class="progress-bar bg-success" role="progressbar" [style.width]="(statusVotacao.a_favor / statusVotacao.total_presentes) * 100 + '%'"></div>
       </div>
     </div>
   </div>
@@ -35,8 +35,8 @@
       </div>
       <div class="h4 mb-0">{{ statusVotacao.contra }}</div>
       <small class="text-muted text-uppercase font-weight-bold">Contra</small>
-      <div class="progress progress-xs mt-1 mb-0">
-        <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress">
+        <div class="progress-bar bg-danger" role="progressbar" [style.width]="(statusVotacao.contra / statusVotacao.total_presentes) * 100 + '%'"></div>
       </div>
     </div>
   </div>
@@ -47,8 +47,8 @@
       </div>
       <div class="h4 mb-0">{{ statusVotacao.abstencao }}</div>
       <small class="text-muted text-uppercase font-weight-bold">Abstenções</small>
-      <div class="progress progress-xs mt-1 mb-0">
-        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress">
+        <div class="progress-bar bg-warning" role="progressbar" [style.width]="(statusVotacao.abstencao / statusVotacao.total_presentes) * 100 + '%'"></div>
       </div>
     </div>
   </div>
@@ -59,8 +59,8 @@
       </div>
       <div class="h4 mb-0">{{ statusVotacao.a_votar }}</div>
       <small class="text-muted text-uppercase font-weight-bold">A Votar</small>
-      <div class="progress progress-xs mt-1 mb-0">
-        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" [style.width]="(statusVotacao.a_votar / statusVotacao.total_presentes) * 100 + '%'"></div>
       </div>
     </div>
   </div>  
