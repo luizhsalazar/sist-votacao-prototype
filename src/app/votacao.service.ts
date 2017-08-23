@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 export class VotacaoService {
 
   conselheirosChange: EventEmitter<any> = new EventEmitter();
+  showResult: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -31,4 +32,14 @@ export class VotacaoService {
   getConselheirosChangeEmitter() {
     return this.conselheirosChange;
   }
+
+  emitResultChangeEvent() {
+    this.showResult.emit();
+  }
+
+  getResultChangeEmitter() {
+    return this.showResult;
+  }
+
+  
 }

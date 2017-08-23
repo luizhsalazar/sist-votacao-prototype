@@ -33,5 +33,10 @@ export class TimerComponent implements OnInit {
   timercallback() {
     this.counter++;
     this.service.emitConselheirosChangeEvent();
+
+    if (this.counter == 40) {
+      this.st.unsubscribe(this.timerId);
+      this.service.emitResultChangeEvent();
+    }
   }  
 }

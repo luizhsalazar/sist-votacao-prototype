@@ -26,6 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { SimpleTimer } from 'ng2-simple-timer';
 import { TimerComponent } from './timer/timer.component';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { HeaderComponent } from './header/header.component';
+import { ResultadoVotacaoComponent } from './resultado-votacao/resultado-votacao.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -33,6 +36,7 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
     AppRoutingModule,
     HttpClientModule,
     RoundProgressModule,
+    NgbModule.forRoot(),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule
@@ -46,7 +50,9 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
     AsideToggleDirective,
     WidgetStatusVotacaoComponent,
     ConselheirosBoardComponent,
-    TimerComponent
+    TimerComponent,
+    HeaderComponent,
+    ResultadoVotacaoComponent
   ],
   providers: [VotacaoService, SimpleTimer, {
     provide: LocationStrategy,
