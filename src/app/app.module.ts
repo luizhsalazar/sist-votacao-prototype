@@ -22,11 +22,17 @@ import { ConselheirosBoardComponent } from './conselheiros-board/conselheiros-bo
 import { VotacaoService } from './votacao.service';
 import { HttpClientModule } from '@angular/common/http';
 
+// Simple Timer
+import { SimpleTimer } from 'ng2-simple-timer';
+import { TimerComponent } from './timer/timer.component';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
+
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RoundProgressModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule
@@ -39,9 +45,10 @@ import { HttpClientModule } from '@angular/common/http';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective,
     WidgetStatusVotacaoComponent,
-    ConselheirosBoardComponent
+    ConselheirosBoardComponent,
+    TimerComponent
   ],
-  providers: [VotacaoService, {
+  providers: [VotacaoService, SimpleTimer, {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   }],

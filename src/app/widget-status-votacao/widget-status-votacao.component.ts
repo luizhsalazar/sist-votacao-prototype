@@ -9,18 +9,23 @@ import { VotacaoService } from "app/votacao.service";
 export class WidgetStatusVotacaoComponent implements OnInit {
 
   statusVotacao: any;
+  subscription: any;
   
   constructor(private service: VotacaoService) { 
-    this.statusVotacao = this.service.getStatusVotacao()
-      .subscribe(response => {
-        this.statusVotacao = response;
-        console.log(this.statusVotacao);
-      }, error => {
-        console.log('error getting conselheiros: ' + error);
-      });
+    this.getVotacao();
   }
 
   ngOnInit() {
+    this.subscription = this.service.getConselheirosChangeEmitter()
+                              .subscribe(() => this.getVotacao());
   }
 
+  getVotacao() {
+    this.service.getStatusVotacao()
+    .subscribe(response => {
+      this.statusVotacao = response;        
+    }, error => {
+      console.log('error getting conselheiros: ' + error);
+    });
+  }
 }

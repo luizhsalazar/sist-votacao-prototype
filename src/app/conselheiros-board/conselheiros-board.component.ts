@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { VotacaoService } from '../votacao.service';
 
 @Component({
@@ -8,19 +8,25 @@ import { VotacaoService } from '../votacao.service';
 })
 export class ConselheirosBoardComponent implements OnInit {
 
-  conselheiros: any;
+  conselheiros: any[] = [];
+  subscription: any;
 
   constructor(private service: VotacaoService) { 
-    this.conselheiros = this.service.getConselheiros()
-      .subscribe(response => {
-        this.conselheiros = this.groupedArray(response, 15);
-        console.log(this.conselheiros);
-      }, error => {
-        console.log('error getting conselheiros: ' + error);
-      });
+    this.getConselheiros();
   }
 
   ngOnInit() {
+    this.subscription = this.service.getConselheirosChangeEmitter()
+                              .subscribe(() => this.getConselheiros());
+  }
+
+  getConselheiros() {
+    this.service.getConselheiros()
+      .subscribe(response => {
+        this.conselheiros = this.groupedArray(response, 15);
+      }, error => {
+        console.log('error getting conselheiros: ' + error);
+    });
   }
 
   groupedArray(arr, chunkSize) {
@@ -31,5 +37,6 @@ export class ConselheirosBoardComponent implements OnInit {
 
     return groups;
   }
+
 
 }

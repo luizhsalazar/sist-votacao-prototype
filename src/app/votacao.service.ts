@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as io from 'socket.io-client';
 
 @Injectable()
 export class VotacaoService {
 
+  conselheirosChange: EventEmitter<any> = new EventEmitter();
+
   constructor(private http: HttpClient) { }
 
-  getConselheiros() {
+  getConselheiros() {    
     return this.http.get('http://localhost:9090/ca/sistvotacao/painel/api.php?method=todos_conselheiros');
   }
 
@@ -21,5 +22,13 @@ export class VotacaoService {
 
   getItemVotacao() {
     return this.http.get('http://localhost:9090/ca/sistvotacao/painel/api.php?method=item_votacao');
+  }
+
+  emitConselheirosChangeEvent(number) {
+    this.conselheirosChange.emit(number);
+  }
+
+  getConselheirosChangeEmitter() {
+    return this.conselheirosChange;
   }
 }
