@@ -23,7 +23,7 @@ export class WidgetStatusVotacaoComponent implements OnInit {
   getVotacao() {
     this.service.getStatusVotacao()
     .subscribe(response => {
-      this.statusVotacao = response;        
+      this.statusVotacao = response;
     }, error => {
       // console.log('error getting status votacao: ' + error);
     });

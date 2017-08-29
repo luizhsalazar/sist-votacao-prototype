@@ -36,7 +36,7 @@ export class TimerComponent implements OnInit {
 
     if (this.counter == 40) {
       this.st.unsubscribe(this.timerId);
-      this.service.emitResultChangeEvent();
+      // this.service.emitResultChangeEvent();
     }
   }  
 }

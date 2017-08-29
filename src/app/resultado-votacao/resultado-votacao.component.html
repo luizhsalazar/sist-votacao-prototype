@@ -1,16 +1,62 @@
-<ng-template #content let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">Resultado Votação</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>One fine body&hellip;</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-  </div>
-</ng-template>
+<div class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Votação Finalizada!</h5>        
+      </div>
+      <div class="modal-body">
 
-<button class="btn btn-sm btn-outline-primary" (click)="open(content)">Resultado</button>
+        <div style="display: inline-block;">
+          <round-progress style="float: inline-start;"
+            [current]="10"
+            [max]="40"
+            [color]="'#4dbd74 '"
+            [background]="'#eaeaea'"
+            [radius]="90"
+            [stroke]="20"
+            [semicircle]="false"
+            [rounded]="true"
+            [clockwise]="true"
+            [responsive]="false"
+            [duration]="800"
+            [animation]="'easeInOutQuart'"
+            [animationDelay]="0">
+          </round-progress>
+          <round-progress style="float: inline-start;"
+            [current]="25"
+            [max]="40"
+            [color]="'#f86c6b'"
+            [background]="'#eaeaea'"
+            [radius]="90"
+            [stroke]="20"
+            [semicircle]="false"
+            [rounded]="true"
+            [clockwise]="true"
+            [responsive]="false"
+            [duration]="800"
+            [animation]="'easeInOutQuart'"
+            [animationDelay]="0">
+          </round-progress>
+          <round-progress style="float: inline-start;"
+            [current]="36"
+            [max]="40"
+            [color]="'#ffc107 '"
+            [background]="'#eaeaea'"
+            [radius]="90"
+            [stroke]="20"
+            [semicircle]="false"
+            [rounded]="true"
+            [clockwise]="true"
+            [responsive]="false"
+            [duration]="800"
+            [animation]="'easeInOutQuart'"
+            [animationDelay]="0">
+          </round-progress>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
