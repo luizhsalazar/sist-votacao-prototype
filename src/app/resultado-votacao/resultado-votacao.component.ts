@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { VotacaoService } from "app/votacao.service";
+import { ModalResultComponent } from '../modal-result/modal-result.component';
 
 @Component({
   selector: 'app-resultado-votacao',
@@ -10,15 +11,16 @@ import { VotacaoService } from "app/votacao.service";
 export class ResultadoVotacaoComponent implements OnInit {
 
   subscription: any;
-  
+  @Input() modalResult: ModalResultComponent;
+    
   constructor(private modalService: NgbModal, private service: VotacaoService) {}
 
   ngOnInit() {
     this.subscription = this.service.getResultChangeEmitter()
-      .subscribe(() => this.open(''));
+      .subscribe(() => this.open(ModalResultComponent));
   }
 
   open(content) {
-    this.modalService.open('');
+    this.modalService.open(content);
   }
 }

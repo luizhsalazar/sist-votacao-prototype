@@ -29,6 +29,7 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { HeaderComponent } from './header/header.component';
 import { ResultadoVotacaoComponent } from './resultado-votacao/resultado-votacao.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalResultComponent } from './modal-result/modal-result.component';
 
 @NgModule({
   imports: [
@@ -52,8 +53,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ConselheirosBoardComponent,
     TimerComponent,
     HeaderComponent,
-    ResultadoVotacaoComponent
+    ResultadoVotacaoComponent,
+    ModalResultComponent
   ],
+  entryComponents: [ ModalResultComponent ],
   providers: [VotacaoService, SimpleTimer, {
     provide: LocationStrategy,
     useClass: HashLocationStrategy
