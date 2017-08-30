@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { VotacaoService } from "app/votacao.service";
 
 @Component({
   selector: 'app-modal-result',
@@ -8,5 +9,20 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalResultComponent {
 
-  constructor(public activeModal: NgbActiveModal) { }
+  votacaoFinalizada: any = [];
+
+  constructor(public activeModal: NgbActiveModal, private service: VotacaoService) { 
+    this.votacaoFinalizada = '';
+  }
+
+  ngOnInit() {
+    this.service.finalizaVotacao()
+      .subscribe(response => {
+        this.votacaoFinalizada = response;
+        console.log(this.votacaoFinalizada);
+        
+      }, error => {
+        console.log('error getting status votacao finalizada: ' + error);
+      });
+  }
 }

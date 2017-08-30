@@ -1,12 +1,67 @@
 <div class="modal-header">
-  <h4 class="modal-title">Hi there!</h4>
+  <h4 class="modal-title">Votação Encerrada!</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-  <p>Hello, Friend!</p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+    <div class="row">      
+      <div class="col-md-12">
+        <h4>Item votação: <strong>{{ votacaoFinalizada.desc_item_votacao }}</strong></h4>
+      </div>
+    </div>    
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Resultado: <strong>{{ votacaoFinalizada.desc_resul_final }}</strong></h4>
+      </div>
+    </div>    
+    <div class="card-group" style="margin-top: 20px;">
+      <div class="card">
+        <div class="card-block">
+          <div class="h1 text-muted text-right mb-2" style="font-size: 1.5rem; position: absolute; margin-left: 115px;">
+            <i class="icon-people"></i>
+          </div>
+          <div class="h4 mb-0">{{ votacaoFinalizada.resul_total }}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Total</small>
+          <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar" [style.width]="(votacaoFinalizada.resul_total) * 100 + '%'"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          <div class="h1 text-muted text-right mb-2" style="font-size: 1.5rem; position: absolute; margin-left: 115px;">
+            <i class="icon-user-follow"></i>
+          </div>
+          <div class="h4 mb-0">{{ votacaoFinalizada.resul_favor }}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Favor</small>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" [style.width]="(votacaoFinalizada.resul_favor / votacaoFinalizada.resul_total) * 100 + '%'"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          <div class="h1 text-muted text-right mb-2" style="font-size: 1.5rem; position: absolute; margin-left: 115px;">
+            <i class="icon-user-unfollow"></i>
+          </div>
+          <div class="h4 mb-0">{{ votacaoFinalizada.resul_contra }}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Contra</small>
+          <div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" [style.width]="(votacaoFinalizada.resul_contra / votacaoFinalizada.resul_total) * 100 + '%'"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-block">
+          <div class="h1 text-muted text-right mb-2" style="font-size: 1.5rem; position: absolute; margin-left: 115px;">
+            <i class="icon-frame"></i>
+          </div>
+          <div class="h4 mb-0">{{ votacaoFinalizada.resul_abstem }}</div>
+          <small class="text-muted text-uppercase font-weight-bold">Abstém</small>
+          <div class="progress">
+            <div class="progress-bar bg-warning" role="progressbar" [style.width]="(votacaoFinalizada.resul_abstem / votacaoFinalizada.resul_total) * 100 + '%'"></div>
+          </div>
+        </div>
+      </div>      
 </div>

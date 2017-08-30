@@ -28,17 +28,17 @@ export class TimerComponent implements OnInit {
 		} else {
 			this.timerId = this.st.subscribe('1sec', () => this.timercallback());
 		}
-}
+  }
   
   timercallback() {
     this.counter++;
     
-    // if (this.counter == 2) {
+    // if (this.counter == 10) {
     //   this.service.emitResultChangeEvent();
     // }
 
     if (this.counter % 2) {
-      this.service.emitConselheirosChangeEvent();
+      // this.service.emitConselheirosChangeEvent();
     }
 
     if (this.counter == 40) {

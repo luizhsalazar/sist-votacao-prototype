@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { VotacaoService } from "app/votacao.service";
 import { ModalResultComponent } from '../modal-result/modal-result.component';
 
@@ -12,15 +12,21 @@ export class ResultadoVotacaoComponent implements OnInit {
 
   subscription: any;
   @Input() modalResult: ModalResultComponent;
+
+  options: NgbModalOptions = {
+    size: 'lg'
+  };
     
   constructor(private modalService: NgbModal, private service: VotacaoService) {}
 
   ngOnInit() {
     this.subscription = this.service.getResultChangeEmitter()
-      .subscribe(() => this.open(ModalResultComponent));
+      .subscribe(() => 
+        this.open(ModalResultComponent)
+      );
   }
 
   open(content) {
-    this.modalService.open(content);
+    this.modalService.open(content, this.options);
   }
 }

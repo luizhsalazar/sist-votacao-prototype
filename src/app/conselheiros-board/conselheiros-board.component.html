@@ -1,15 +1,15 @@
 <div class="row">
   <div *ngFor="let conselheiroGroup of conselheiros" class="col-md-2">
     <ul *ngFor="let conselheiro of conselheiroGroup" class="list-group">
-      <li class="list-group-item" [class.active]="conselheiro.presente_sessao" (change)="statusChange($event)">
+      <li class="list-group-item text-uppercase" 
+        [class.active]="conselheiro.presente_sessao" 
+        [class.bg-danger]="conselheiro.situacao_voto == 'contra'" 
+        [class.bg-success]="conselheiro.situacao_voto == 'favor'" 
+        [class.bg-warning]="conselheiro.situacao_voto == 'abstencao'" 
+        (change)="statusChange($event)"
+        style="border-color:white;">
         {{ conselheiro.nome }}
-        <span *ngIf="conselheiro.suplente" class="badge badge-pill badge-light">Suplente</span>
-        <div *ngIf="conselheiro.presente_sessao" class="float-right">
-          <span *ngIf="conselheiro.situacao_voto == 'a_votar'" class="badge" [class.badge-dark]="conselheiro.situacao_voto == 'a_votar'">A VOTAR</span>
-          <span *ngIf="conselheiro.situacao_voto == 'favor'" class="badge" [class.badge-success]="conselheiro.situacao_voto == 'favor'">A FAVOR</span>
-          <span *ngIf="conselheiro.situacao_voto == 'contra'" class="badge" [class.badge-danger]="conselheiro.situacao_voto == 'contra'">CONTRA</span>
-          <span *ngIf="conselheiro.situacao_voto == 'abstencao'" class="badge" [class.badge-warning]="conselheiro.situacao_voto == 'abstencao'">ABSTÉM</span>
-        </div>
+        <span *ngIf="conselheiro.suplente" class="badge badge-pill badge-light" style="float: right;">Suplente</span>
       </li>
     </ul>
   <div>

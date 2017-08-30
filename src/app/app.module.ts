@@ -30,6 +30,7 @@ import { HeaderComponent } from './header/header.component';
 import { ResultadoVotacaoComponent } from './resultado-votacao/resultado-votacao.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalResultComponent } from './modal-result/modal-result.component';
+import { PautaDescriptionComponent } from './pauta-description/pauta-description.component';
 
 @NgModule({
   imports: [
@@ -54,7 +55,8 @@ import { ModalResultComponent } from './modal-result/modal-result.component';
     TimerComponent,
     HeaderComponent,
     ResultadoVotacaoComponent,
-    ModalResultComponent
+    ModalResultComponent,
+    PautaDescriptionComponent
   ],
   entryComponents: [ ModalResultComponent ],
   providers: [VotacaoService, SimpleTimer, {
