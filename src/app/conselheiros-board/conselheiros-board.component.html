@@ -7,7 +7,7 @@
         [class.bg-success]="conselheiro.situacao_voto == 'favor'" 
         [class.bg-warning]="conselheiro.situacao_voto == 'abstencao'" 
         (change)="statusChange($event)"
-        style="border-color:white;">
+        style="border-color:white; color: black;">
         {{ conselheiro.nome }}
         <span *ngIf="conselheiro.suplente" class="badge badge-pill badge-light" style="float: right;">Suplente</span>
       </li>
