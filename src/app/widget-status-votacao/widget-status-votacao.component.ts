@@ -10,7 +10,7 @@ export class WidgetStatusVotacaoComponent implements OnInit {
 
   statusVotacao: any = [];
   subscription: any;
-  
+
   constructor(private service: VotacaoService) { 
     this.getVotacao();
   }
@@ -22,10 +22,10 @@ export class WidgetStatusVotacaoComponent implements OnInit {
 
   getVotacao() {
     this.service.getStatusVotacao()
-    .subscribe(response => {
-      this.statusVotacao = response;
-    }, error => {
-      // console.log('error getting status votacao: ' + error);
-    });
+      .subscribe(response => {
+        this.statusVotacao = response;
+      }, error => {
+        // console.log('error getting status votacao: ' + error);
+      });
   }
 }

@@ -1,7 +1,7 @@
 <div class="h1 text-muted text-right mb-2">
     <round-progress style="float: inline-start;"
-        [current]="counter"
-        [max]="40"
+        [current]="counterVotacao"
+        [max]="5"
         [color]="'#f86c6b'"
         [background]="'#eaeaea'"
         [radius]="60"
@@ -14,7 +14,5 @@
         [animation]="'easeInOutQuart'"
         [animationDelay]="0">
     </round-progress>
-    <div class="h4 mb-0" style="font-size: 2.5rem;">{{ counter }}/40</div>
-    
-    <app-resultado-votacao></app-resultado-votacao>    
+    <div class="h4 mb-0" style="font-size: 2.5rem;">{{ counterVotacao }}/5</div>
 </div>

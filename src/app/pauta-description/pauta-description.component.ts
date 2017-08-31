@@ -9,17 +9,22 @@ import { VotacaoService } from "app/votacao.service";
 export class PautaDescriptionComponent implements OnInit {
 
   itemVotacao: any = '';
+  subscription: any;
   
-  constructor(private service: VotacaoService) { 
-    this.service.getItemVotacao()
-    .subscribe(response => {
-      this.itemVotacao = response;
-    }, error => {
-      console.log('error getting item votacao: ' + error);
-  });
-  }
+  constructor(private service: VotacaoService) { }
 
   ngOnInit() {
+    this.subscription = this.service.getDbChangeEmitter()
+      .subscribe(() => this.getItemVotacao());
+  }
+
+  getItemVotacao() {
+    this.service.getItemVotacao()
+      .subscribe(response => {
+        this.itemVotacao = response;
+      }, error => {
+        console.log('error getting item votacao: ' + error);
+    });
   }
 
 }

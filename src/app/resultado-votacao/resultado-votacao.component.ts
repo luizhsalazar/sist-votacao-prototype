@@ -14,12 +14,16 @@ export class ResultadoVotacaoComponent implements OnInit {
   @Input() modalResult: ModalResultComponent;
 
   options: NgbModalOptions = {
-    size: 'lg'
+    size: 'lg',
+    backdrop: 'static',
+    keyboard: false
   };
     
   constructor(private modalService: NgbModal, private service: VotacaoService) {}
 
   ngOnInit() {
+    console.log('init resultado votacao component');
+    
     this.subscription = this.service.getResultChangeEmitter()
       .subscribe(() => 
         this.open(ModalResultComponent)

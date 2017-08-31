@@ -11,39 +11,93 @@ import { WidgetStatusVotacaoComponent } from "app/widget-status-votacao/widget-s
 })
 export class TimerComponent implements OnInit {
 
-  counter = 0;
-  timerId: string;
+  counterVotacao = 0;
+  timerIdVotacao: string;
+  timerIdDbUpdate: string;
 
-  constructor(private st: SimpleTimer, private service: VotacaoService) { }
+  subscription: any;
+  statusVotacao: any;
+
+  constructor(private st: SimpleTimer, private service: VotacaoService) { 
+    // Control updates in database
+    this.st.newTimer('5sec', 5);
+    this.subscribeTimerDbUpdate();
+  }
 
   ngOnInit() {
+    this.subscription = this.service.getDbChangeEmitter()
+      .subscribe(() => this.checkVotacao());
+    
+    // // Control updates in database
+    // this.st.newTimer('5sec', 5);
+    // this.subscribeTimerDbUpdate();
+  }
+
+  checkVotacao() {
+    this.service.getItemVotacao()
+      .subscribe( response => {
+        this.statusVotacao = response;
+
+        if (this.statusVotacao.id_status_item_a_ser_votado == 3 && this.counterVotacao === 0 && this.counterVotacao <= 40) {
+          this.initTimerVotacao();
+        } else {
+          if (this.statusVotacao.id_status_item_a_ser_votado == 0 || this.statusVotacao.id_status_item_a_ser_votado == 2) {
+            this.st.unsubscribe(this.timerIdVotacao);
+            this.counterVotacao = 0;
+          }
+        }
+      }, error => {
+        console.log('error getting item votacao: ' + error);
+    });    
+  }
+
+  initTimerVotacao() {
+    // console.log('init timer 1 sec');
+    
     this.st.newTimer('1sec', 1);
     this.subscribeTimer();
+
+    // Unsubscribe TimerDbUpdate
+    // this.subscribeTimerDbUpdate();
+  }
+
+  subscribeTimerDbUpdate() {
+		if (this.timerIdDbUpdate) {			
+			this.st.unsubscribe(this.timerIdDbUpdate);
+      this.timerIdDbUpdate = undefined;
+		} else {
+			this.timerIdDbUpdate = this.st.subscribe('5sec', () => this.timerDbUpdate());
+		}
+  }
+
+  timerDbUpdate() {
+    // console.log('emit db change event timer 5 sec');
+    this.service.emitDbChangeEvent();
   }
 
   subscribeTimer() {
-		if (this.timerId) {			
-			this.st.unsubscribe(this.timerId);
-			this.timerId = undefined;
+		if (this.timerIdVotacao) {			
+			this.st.unsubscribe(this.timerIdVotacao);
+			this.timerIdVotacao = undefined;
 		} else {
-			this.timerId = this.st.subscribe('1sec', () => this.timercallback());
+			this.timerIdVotacao = this.st.subscribe('1sec', () => this.timerVotacao());
 		}
   }
   
-  timercallback() {
-    this.counter++;
-    
-    // if (this.counter == 10) {
-    //   this.service.emitResultChangeEvent();
-    // }
+  timerVotacao() {
+    this.counterVotacao++;
 
-    if (this.counter % 2) {
-      // this.service.emitConselheirosChangeEvent();
+    if (this.counterVotacao == 3) {
+      this.service.emitConselheirosChangeEvent();
     }
 
-    if (this.counter == 40) {
-      this.st.unsubscribe(this.timerId);
+    console.log("contador: " + this.counterVotacao);
+
+    if (this.counterVotacao == 5) {
       this.service.emitResultChangeEvent();
+      this.st.unsubscribe(this.timerIdVotacao);
+      this.counterVotacao = 0;      
     }
-  }  
+  }
+  
 }

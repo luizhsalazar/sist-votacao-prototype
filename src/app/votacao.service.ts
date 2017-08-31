@@ -6,6 +6,7 @@ export class VotacaoService {
 
   conselheirosChange: EventEmitter<any> = new EventEmitter();
   showResult: EventEmitter<any> = new EventEmitter();
+  dbUpdate: EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -45,5 +46,11 @@ export class VotacaoService {
     return this.showResult;
   }
 
-  
+  emitDbChangeEvent() {
+    this.dbUpdate.emit();
+  }
+
+  getDbChangeEmitter() {
+    return this.dbUpdate;
+  }  
 }

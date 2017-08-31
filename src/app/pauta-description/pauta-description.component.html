@@ -2,12 +2,24 @@
   <div class="card">
     <div class="row">
       <div class="col-md-3 text-uppercase" style="padding: 16px 0 15px 25px">
+        <h5>Estado: 
+          <span class="badge badge-pill" 
+                [class.badge-info]="itemVotacao.id_status_item_a_ser_votado == 0"
+                [class.badge-warning]="itemVotacao.id_status_item_a_ser_votado == 2" 
+                [class.badge-success]="itemVotacao.id_status_item_a_ser_votado == 3"
+                [class.badge-danger]="itemVotacao.id_status_item_a_ser_votado == 4"
+                style="padding-bottom: 0px;">
+            <h5>{{ itemVotacao.desc_status_item_a_ser_votado }}</h5>
+          </span>
+        </h5>
+      </div>
+      <div class="col-md-2 text-uppercase" style="padding: 16px 0 15px 25px">
         <h5>Pauta: <strong>{{ itemVotacao.titulo_pauta }} </strong></h5>      
       </div>
-      <div class="col-md-4 text-uppercase" style="padding: 16px 0 15px 25px">
+      <div class="col-md-3 text-uppercase" style="padding: 16px 0 15px 25px">
         <h5>Item a ser votado: <strong>{{ itemVotacao.titulo_item_a_ser_votado }}</strong></h5>
       </div>
-      <div class="col-md-5 text-uppercase" style="padding: 16px 0 15px 25px">
+      <div class="col-md-4 text-uppercase" style="padding: 16px 0 15px 25px">
         <h5>Descrição Item: <strong>{{ itemVotacao.desc_item_a_ser_votado }}</strong></h5>
       </div>  
     </div>
