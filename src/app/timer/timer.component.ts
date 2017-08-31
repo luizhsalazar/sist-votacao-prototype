@@ -27,10 +27,6 @@ export class TimerComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.service.getDbChangeEmitter()
       .subscribe(() => this.checkVotacao());
-    
-    // // Control updates in database
-    // this.st.newTimer('5sec', 5);
-    // this.subscribeTimerDbUpdate();
   }
 
   checkVotacao() {
@@ -38,10 +34,10 @@ export class TimerComponent implements OnInit {
       .subscribe( response => {
         this.statusVotacao = response;
 
-        if (this.statusVotacao.id_status_item_a_ser_votado == 3 && this.counterVotacao === 0 && this.counterVotacao <= 40) {
+        if (this.statusVotacao.id_status_item_a_ser_votado == 3 && this.counterVotacao === 0 && this.timerIdVotacao == undefined) {
           this.initTimerVotacao();
         } else {
-          if (this.statusVotacao.id_status_item_a_ser_votado == 0 || this.statusVotacao.id_status_item_a_ser_votado == 2) {
+          if (this.statusVotacao.id_status_item_a_ser_votado != 3) {
             this.st.unsubscribe(this.timerIdVotacao);
             this.counterVotacao = 0;
           }
@@ -52,13 +48,8 @@ export class TimerComponent implements OnInit {
   }
 
   initTimerVotacao() {
-    // console.log('init timer 1 sec');
-    
     this.st.newTimer('1sec', 1);
     this.subscribeTimer();
-
-    // Unsubscribe TimerDbUpdate
-    // this.subscribeTimerDbUpdate();
   }
 
   subscribeTimerDbUpdate() {
@@ -71,7 +62,6 @@ export class TimerComponent implements OnInit {
   }
 
   timerDbUpdate() {
-    // console.log('emit db change event timer 5 sec');
     this.service.emitDbChangeEvent();
   }
 
@@ -90,8 +80,6 @@ export class TimerComponent implements OnInit {
     if (this.counterVotacao == 3) {
       this.service.emitConselheirosChangeEvent();
     }
-
-    console.log("contador: " + this.counterVotacao);
 
     if (this.counterVotacao == 5) {
       this.service.emitResultChangeEvent();

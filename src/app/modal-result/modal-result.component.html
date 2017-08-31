@@ -12,10 +12,15 @@
     </div>    
     <div class="row">
       <div class="col-md-12 text-uppercase">
-        <h4>Resultado: <strong>{{ votacaoFinalizada.desc_resul_final }}</strong></h4>
+        <h4>Resultado: 
+          <strong *ngIf="votacaoFinalizada.tipo == 'sucesso'">{{ votacaoFinalizada.desc_resul_final }}</strong>
+          <span *ngIf="votacaoFinalizada.tipo == 'erro'" class="badge badge-pill badge-danger">
+            {{ votacaoFinalizada.dados }}
+          </span>          
+        </h4>
       </div>
     </div>    
-    <div class="card-group" style="margin-top: 20px;">
+    <div *ngIf="votacaoFinalizada.tipo == 'sucesso'" class="card-group" style="margin-top: 20px;">
       <div class="card">
         <div class="card-block">
           <div class="h1 text-muted text-right mb-2" style="font-size: 1.5rem; position: absolute; margin-left: 115px;">

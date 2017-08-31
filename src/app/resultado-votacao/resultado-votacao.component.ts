@@ -22,8 +22,6 @@ export class ResultadoVotacaoComponent implements OnInit {
   constructor(private modalService: NgbModal, private service: VotacaoService) {}
 
   ngOnInit() {
-    console.log('init resultado votacao component');
-    
     this.subscription = this.service.getResultChangeEmitter()
       .subscribe(() => 
         this.open(ModalResultComponent)
