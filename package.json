@@ -16,6 +16,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^4.3.6",
     "@angular/common": "4.3.4",
     "@angular/compiler": "4.3.4",
     "@angular/core": "4.3.4",
@@ -27,6 +28,7 @@
     "@angular/upgrade": "4.3.4",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.2",
     "angular-svg-round-progressbar": "^1.1.0",
+    "angular2-busy": "^2.0.4",
     "chart.js": "2.6.0",
     "core-js": "2.5.0",
     "moment": "2.18.1",

@@ -32,12 +32,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalResultComponent } from './modal-result/modal-result.component';
 import { PautaDescriptionComponent } from './pauta-description/pauta-description.component';
 
+// Spinner pre loader
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BusyModule } from 'angular2-busy';
+
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RoundProgressModule,
+    BrowserAnimationsModule,
+    BusyModule,
     NgbModule.forRoot(),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),

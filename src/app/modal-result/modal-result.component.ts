@@ -19,8 +19,6 @@ export class ModalResultComponent {
     this.service.finalizaVotacao()
       .subscribe(response => {
         this.votacaoFinalizada = response;
-        console.log(this.votacaoFinalizada);
-        
       }, error => {
         console.log('error getting status votacao finalizada: ' + error);
       });

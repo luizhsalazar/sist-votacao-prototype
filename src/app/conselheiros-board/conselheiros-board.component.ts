@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VotacaoService } from '../votacao.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-conselheiros-board',
@@ -10,6 +11,10 @@ export class ConselheirosBoardComponent implements OnInit {
 
   conselheiros: any[] = [];
   subscription: any;
+  subscriptionVotacao: any;
+
+  statusVotacao: any;
+  cleanVotacao: number = 0;
 
   constructor(private service: VotacaoService) { 
     this.getConselheiros();
@@ -17,7 +22,10 @@ export class ConselheirosBoardComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.service.getConselheirosChangeEmitter()
-                              .subscribe(() => this.getConselheiros());
+      .subscribe(() => this.getConselheiros());
+                        
+    this.subscriptionVotacao = this.service.getCleanDataEmitter()
+      .subscribe(() => this.cleanPainel());
   }
 
   getConselheiros() {
@@ -29,6 +37,10 @@ export class ConselheirosBoardComponent implements OnInit {
     });
   }
 
+  cleanPainel() {
+    this.getConselheiros();
+  }
+
   groupedArray(arr, chunkSize) {
     var groups = [], i;
     for (i = 0; i < arr.conselheiros.length; i += chunkSize) {
@@ -37,6 +49,4 @@ export class ConselheirosBoardComponent implements OnInit {
 
     return groups;
   }
-
-
 }

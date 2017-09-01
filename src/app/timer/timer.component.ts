@@ -39,6 +39,7 @@ export class TimerComponent implements OnInit {
         } else {
           if (this.statusVotacao.id_status_item_a_ser_votado != 3) {
             this.st.unsubscribe(this.timerIdVotacao);
+            this.timerIdVotacao = undefined;
             this.counterVotacao = 0;
           }
         }
@@ -77,14 +78,15 @@ export class TimerComponent implements OnInit {
   timerVotacao() {
     this.counterVotacao++;
 
-    if (this.counterVotacao == 3) {
+    if (this.counterVotacao % 3 == 0) {
       this.service.emitConselheirosChangeEvent();
     }
 
-    if (this.counterVotacao == 5) {
+    if (this.counterVotacao == 40) {
       this.service.emitResultChangeEvent();
       this.st.unsubscribe(this.timerIdVotacao);
-      this.counterVotacao = 0;      
+      this.statusVotacao.id_status_item_a_ser_votado = 4;
+      this.counterVotacao = 0;
     }
   }
   

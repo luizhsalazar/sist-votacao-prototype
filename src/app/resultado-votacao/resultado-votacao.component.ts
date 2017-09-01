@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { VotacaoService } from "app/votacao.service";
 import { ModalResultComponent } from '../modal-result/modal-result.component';
 
@@ -11,7 +11,9 @@ import { ModalResultComponent } from '../modal-result/modal-result.component';
 export class ResultadoVotacaoComponent implements OnInit {
 
   subscription: any;
+  statusVotacao: any;
   @Input() modalResult: ModalResultComponent;
+  modalRef: NgbModalRef;
 
   options: NgbModalOptions = {
     size: 'lg',
@@ -19,7 +21,10 @@ export class ResultadoVotacaoComponent implements OnInit {
     keyboard: false
   };
     
-  constructor(private modalService: NgbModal, private service: VotacaoService) {}
+  constructor(private modalService: NgbModal, private service: VotacaoService) {
+    this.subscription = this.service.getDbChangeEmitter()
+      .subscribe(() => this.checkVotacao());
+  }
 
   ngOnInit() {
     this.subscription = this.service.getResultChangeEmitter()
@@ -29,6 +34,21 @@ export class ResultadoVotacaoComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content, this.options);
+    this.modalRef = this.modalService.open(content, this.options);
+  }
+
+  checkVotacao() {
+    this.service.getItemVotacao()
+      .subscribe(response => {
+        this.statusVotacao = response;
+        if (this.statusVotacao.id_status_item_a_ser_votado == 3 || this.statusVotacao.id_status_item_a_ser_votado == 2) {
+          if (this.modalRef) {
+            this.modalRef.close();
+            this.service.emitCleanDataEvent();
+          }          
+        }
+      }, error => {
+        console.log('error getting item votacao resultado component: ' + error);
+    });
   }
 }

@@ -7,15 +7,24 @@
 <div class="modal-body">
     <div class="row">      
       <div class="col-md-12 text-uppercase">
-        <h4>Item votação: <strong>{{ votacaoFinalizada.desc_item_votacao }}</strong></h4>
+        <h4>Item votação: 
+          <strong *ngIf="votacaoFinalizada.tipo == 'sucesso'">{{ votacaoFinalizada.desc_item_votacao }}</strong>
+          <strong *ngIf="votacaoFinalizada.tipo == 'erro'">{{ votacaoFinalizada.dados.item_votacao }}</strong>
+        </h4>
       </div>
     </div>    
     <div class="row">
       <div class="col-md-12 text-uppercase">
         <h4>Resultado: 
-          <strong *ngIf="votacaoFinalizada.tipo == 'sucesso'">{{ votacaoFinalizada.desc_resul_final }}</strong>
+          <span *ngIf="votacaoFinalizada.tipo == 'sucesso'" class="badge badge-pill"
+            [class.badge-success]="votacaoFinalizada.resultado_final == 1"
+            [class.badge-danger]="votacaoFinalizada.resultado_final == 2"
+            [class.badge-warning]="votacaoFinalizada.resultado_final == 4"
+          >
+            {{ votacaoFinalizada.desc_resul_final }}
+          </span>
           <span *ngIf="votacaoFinalizada.tipo == 'erro'" class="badge badge-pill badge-danger">
-            {{ votacaoFinalizada.dados }}
+            {{ votacaoFinalizada.dados.mensagem }}
           </span>          
         </h4>
       </div>
